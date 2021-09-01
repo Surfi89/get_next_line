@@ -68,15 +68,14 @@ If you're on Linux, you may as well need the following flags:
 ## 📋 Testing
 
 You only have to edit the get_next_line.c file and uncomment the main function inside it.
+You can edit test.txt files to put another text if you wish to test othe cases.
 Then simply run this command (change "xx" with desired buffer size) :
 
 ```shell
 gcc -D BUFFER_SIZE=xx get_next_line.c && ./a.out
 ```
 
-You can edit test.txt files to put another text if you wish to test othe cases.
-
-You can also use any of this third party testers to fully test the project
+Or you can also use any of this third party testers to fully test the project
 
 * [Tripouille/gnlTester](https://github.com/Tripouille/gnlTester)
 * [Mazoise/42TESTERS-GNL](https://github.com/Mazoise/42TESTERS-GNL)
