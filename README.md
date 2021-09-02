@@ -75,11 +75,6 @@ Then simply run this command (change "xx" with desired buffer size) :
 gcc -D BUFFER_SIZE=xx get_next_line.c && ./a.out
 ```
 
-Or you can also use any of this third party testers to fully test the project
+Or you can also use this third party tester to fully test the project
 
 * [Tripouille/gnlTester](https://github.com/Tripouille/gnlTester)
-* [Mazoise/42TESTERS-GNL](https://github.com/Mazoise/42TESTERS-GNL)
-* [charMstr/GNL_lover](https://github.com/charMstr/GNL_lover)
-* [mrjvs/42cursus_gnl_tests](https://github.com/mrjvs/42cursus_gnl_tests)
-* [Hellio404/Get_Next_Line_Tester](https://github.com/Hellio404/Get_Next_Line_Tester)
-* [saarikoski-jules/gnl_unit_tests](https://github.com/saarikoski-jules/gnl_unit_tests)
