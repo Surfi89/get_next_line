@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:24:32 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/09/02 09:40:34 by ajordan-         ###   ########.fr       */
+/*   Updated: 2021/09/03 08:48:55 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	return (str);
 }
 
-char	*ft_line(char *left_str)
+char	*ft_get_line(char *left_str)
 {
 	int		i;
 	char	*str;

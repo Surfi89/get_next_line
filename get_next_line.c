@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 10:12:14 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/09/02 14:55:48 by ajordan-         ###   ########.fr       */
+/*   Updated: 2021/09/03 08:47:29 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,44 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 
-	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	left_str = ft_read_to_left_str(fd, left_str);
 	if (!left_str)
 		return (NULL);
-	line = ft_line(left_str);
+	line = ft_get_line(left_str);
 	left_str = ft_new_left_str(left_str);
 	return (line);
 }
+
+/*int	main(void)
+{
+	char	*line;
+	int		i;
+	int		fd1;
+	int		fd2;
+	int		fd3;
+
+	fd1 = open("test.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	fd3 = open("test3.txt", O_RDONLY);
+	i = 1;
+	while (i < 7)
+	{
+		line = get_next_line(fd1);
+		printf("line [%02d]: %s", i, line);
+		free(line);
+		line = get_next_line(fd2);
+		printf("line [%02d]: %s", i, line);
+		free(line);
+		line = get_next_line(fd3);
+		printf("line [%02d]: %s", i, line);
+		free(line);
+		i++;
+	}
+	close(fd1);
+	close(fd2);
+	close(fd3);
+	return (0);
+}
+*/
