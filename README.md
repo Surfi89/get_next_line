@@ -59,12 +59,6 @@ and, when compiling your code, add the source files and the required flag:
 get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=<size>
 ```
 
-If you're on Linux, you may as well need the following flags:
-
-```shell
--D ARG_MAX="sysconf(_SC_ARG_MAX)" -D OPEN_MAX=1024
-```
-
 ## 📋 Testing
 
 You only have to edit the get_next_line.c file and uncomment the main function inside it.
