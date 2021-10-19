@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:25:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/09/28 10:47:28 by ajordan-         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:09:21 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
-# include <unistd.h>
-# include <stddef.h>
-# include <stdio.h>
-# include <fcntl.h>
 
 char	*get_next_line(int fd);
 char	*ft_read_to_left_str(int fd, char *left_str);

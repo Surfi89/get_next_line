@@ -6,11 +6,14 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:17:07 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/09/28 10:52:57 by ajordan-         ###   ########.fr       */
+/*   Updated: 2021/10/19 16:08:08 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include <unistd.h>
+//#include <stdio.h>
+//#include <fcntl.h>
 
 char	*ft_read_to_left_str(int fd, char *left_str)
 {
