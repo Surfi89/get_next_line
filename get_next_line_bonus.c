@@ -60,6 +60,7 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 		if (rd_bytes == -1)
 		{
 			free(buff);
+			free(left_str);
 			return (NULL);
 		}
 		buff[rd_bytes] = '\0';
