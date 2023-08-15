@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/16 10:12:14 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/20 10:04:09 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
+/*   Updated: 2023/08/14 22:30:29 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 
 #include "get_next_line.h"
 #include <unistd.h>
-//#include <stdio.h>
-//#include <fcntl.h>
+#include <stdio.h>
+#include <fcntl.h>
 
 char	*ft_read_to_left_str(int fd, char *left_str)
 {
@@ -84,13 +84,56 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	if (dstsize == 0)
+		return (i);
+	i = 0;
+	while (src[i] && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	c;
+	size_t	d;
+
+	c = ft_strlen(dst);
+	d = ft_strlen(src);
+	if (size <= c)
+		return (size + d);
+	d = 0;
+	while (src[d] && c + 1 < size)
+	{
+		dst[c] = src[d];
+		c++;
+		d++;
+	}
+	dst[c] = '\0';
+	return (ft_strlen(dst) + ft_strlen(&src[d]));
+}
+
+int	main(void)
 {
 	char	*line;
 	int		i;
 	int		fd1;
 	int		fd2;
 	int		fd3;
+
 	fd1 = open("tests/test.txt", O_RDONLY);
 	fd2 = open("tests/test2.txt", O_RDONLY);
 	fd3 = open("tests/test3.txt", O_RDONLY);
@@ -112,4 +155,4 @@ char	*get_next_line(int fd)
 	close(fd2);
 	close(fd3);
 	return (0);
-}*/
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/16 10:12:58 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/20 10:05:53 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/08/14 22:23:54 by josfelip          #+#    #+#             */
+/*   Updated: 2023/08/14 22:33:07 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *left_str, char *buff)
+/* char	*ft_strjoin(char *left_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -90,6 +90,21 @@ char	*ft_strjoin(char *left_str, char *buff)
 	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
 	free(left_str);
 	return (str);
+} */
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*s3;
+	size_t	len;
+
+	len = ft_strlen(s1);
+	len += ft_strlen(s2);
+	s3 = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s3)
+		return (NULL);
+	ft_strlcpy(s3, s1, ft_strlen(s1) + 1);
+	ft_strlcat(s3, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
+	return (s3);
 }
 
 char	*ft_get_line(char *left_str)
