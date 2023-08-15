@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/15 13:33:07 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:57:25 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,15 @@ int	main(void)
 	i = 1;
 	while (i < 7)
 	{
-		line = get_next_line(fd1);
+O		line = get_next_line(0);
 		printf("line [%02d]: %s", i, line);
 		free(line);
-		line = get_next_line(fd2);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd3);
-		printf("line [%02d]: %s", i, line);
-		free(line);
+		// line = get_next_line(fd2);
+		// printf("line [%02d]: %s", i, line);
+		// free(line);
+		// line = get_next_line(fd3);
+		// printf("line [%02d]: %s", i, line);
+		// free(line);
 		i++;
 	}
 	close(fd1);
