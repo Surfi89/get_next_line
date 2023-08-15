@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"fcntl.h": "c",
+		"limits": "c",
+		"*.tcc": "c",
+		"type_traits": "c"
+	}
+}
