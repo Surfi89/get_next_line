@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/15 15:57:25 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/15 23:16:46 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,22 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*left_str;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
+	int			i;
+	
 	left_str = ft_read_to_left_str(fd, left_str);
 	if (!left_str)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
+	i = 0;
+	while (left_str[i] && left_str[i] != '\n')
+		i++;
+	line = (char *)malloc((i + 2) * sizeof(char));
+	if (!line)
+		return (NULL);
+	line[i] = '\n';
+	line[i + 1] = '\0';
+	while (i--)
+		line[i] = left_str[i];
+	left_str += ft_strlen(line);
 	return (line);
 }
 
@@ -126,7 +134,7 @@ int	main(void)
 	i = 1;
 	while (i < 7)
 	{
-O		line = get_next_line(0);
+		line = get_next_line(fd1);
 		printf("line [%02d]: %s", i, line);
 		free(line);
 		// line = get_next_line(fd2);
