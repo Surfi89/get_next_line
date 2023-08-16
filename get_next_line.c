@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/15 23:16:46 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:17:33 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,22 +101,31 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*left_str;
-	int			i;
+	size_t		len;
+	size_t		i;
 	
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	left_str = ft_read_to_left_str(fd, left_str);
 	if (!left_str)
 		return (NULL);
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	line = (char *)malloc((i + 2) * sizeof(char));
+	len = 0;
+	while (left_str[len] && left_str[len] != '\n')
+		len++;
+	if (left_str[len] == '\0' && len == 0)
+	{
+		free(left_str);
+		return (NULL);
+	}
+	line = (char *)malloc((len + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
-	line[i] = '\n';
-	line[i + 1] = '\0';
-	while (i--)
+	i = -1;
+	while (++i < len)
 		line[i] = left_str[i];
-	left_str += ft_strlen(line);
+	line[len] = '\n';
+	line[len + 1] = '\0';
+	left_str += len + 1;
 	return (line);
 }
 
@@ -127,14 +136,16 @@ int	main(void)
 	int		fd1;
 	int		fd2;
 	int		fd3;
+	int		fd4;
 
 	fd1 = open("tests/test.txt", O_RDONLY);
 	fd2 = open("tests/test2.txt", O_RDONLY);
 	fd3 = open("tests/test3.txt", O_RDONLY);
+	fd4 = open("tests/test4.txt", O_RDONLY);
 	i = 1;
 	while (i < 7)
 	{
-		line = get_next_line(fd1);
+		line = get_next_line(fd4);
 		printf("line [%02d]: %s", i, line);
 		free(line);
 		// line = get_next_line(fd2);
@@ -148,5 +159,6 @@ int	main(void)
 	close(fd1);
 	close(fd2);
 	close(fd3);
+	close(fd4);
 	return (0);
 }
