@@ -6,31 +6,9 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:54 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/15 15:16:49 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:26:47 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-*	---------
-*	GET_LINE
-*	---------
-*	Extracts the line (ending in either line break and `\0` or only `\0` in EOF)
-*	from static variable.
-*	PARAMETERS
-*	#1. The pointer to the cumulative static variable from previous runs of get_next_line.
-*	RETURN VALUES
-*	The string with the full line ending in a line break (`\n`) + (`\0`).
-*	-------------
-*	NEW_LEFT_STR
-*	-------------
-*	Stores in the cumulative static variable the new updated variable with whatever
-*	is left from the original, minus the line extracted.
-*	PARAMETERS
-*	#1. The pointer to the cumulative static variable from previous runs of get_next_line.
-*	RETURN VALUES
-*	The new updated string with whatever is left from the original static, minus the
-*	line extracted.
-*/
 
 #include "get_next_line.h"
 
@@ -41,21 +19,21 @@ size_t	ft_strlen(const char *s)
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0')
+	while (s[i])
 		i++;
 	return (i);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
 	if (!s)
 		return (0);
 	if (c == '\0')
 		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
+	i = 0;
+	while (s[i])
 	{
 		if (s[i] == (char) c)
 			return ((char *)&s[i]);
@@ -64,47 +42,48 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-/* char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin(const char *left_str, const char *buff)
 {
+	char	*str;
+	size_t	len;
 	size_t	i;
 	size_t	j;
-	char	*str;
 
-	if (!left_str)
+	len = ft_strlen(left_str) + ft_strlen(buff);
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (left_str[i])
 	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
+		str[i] = left_str[i];
+		i++;
 	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
-		return (NULL);
-	i = -1;
 	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
+	while (buff[j])
 		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
+	str[i] = '\0';
 	return (str);
-} */
+}
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(const char *s1)
 {
-	char	*s3;
-	size_t	len;
+	char *dup;
+	size_t len;
+	size_t i;
 
 	len = ft_strlen(s1);
-	len += ft_strlen(s2);
-	s3 = (char *)malloc(sizeof(char) * (len + 1));
-	if (!s3)
+	dup = malloc(len + 1);
+	if (!dup)
 		return (NULL);
-	ft_strlcpy(s3, s1, ft_strlen(s1) + 1);
-	ft_strlcat(s3, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
-	return (s3);
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
 
 char	*ft_get_line(char *left_str)

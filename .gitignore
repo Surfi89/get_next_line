@@ -19,3 +19,7 @@
 
 # Subject files
 *.pdf
+
+# Tester files
+.gnlTester/
+

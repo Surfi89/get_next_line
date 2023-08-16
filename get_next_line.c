@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/16 11:17:33 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:41:19 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 char	*ft_read_to_left_str(int fd, char *left_str)
 {
 	char	*buff;
-	int		rd_bytes;
+	ssize_t	rd_bytes;
 
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	rd_bytes = 1;
-	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
+	while (!ft_strchr(left_str, '\n') && rd_bytes)
 	{
 		rd_bytes = read(fd, buff, BUFFER_SIZE);
 		if (rd_bytes == -1)
@@ -40,61 +40,6 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 	}
 	free(buff);
 	return (left_str);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	if (dstsize == 0)
-		return (i);
-	i = 0;
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
-{
-	size_t	c;
-	size_t	d;
-
-	c = ft_strlen(dst);
-	d = ft_strlen(src);
-	if (size <= c)
-		return (size + d);
-	d = 0;
-	while (src[d] && c + 1 < size)
-	{
-		dst[c] = src[d];
-		c++;
-		d++;
-	}
-	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[d]));
-}
-
-char    *ft_strdup(const char *s1)
-{
-        char    *result;
-        size_t  len;
-
-        len = ft_strlen(s1);
-        result = malloc(len + 1);
-        if (result == NULL)
-                return (NULL);
-		ft_strlcpy(result, s1, len + 1);
-        return (result);
 }
 
 char	*get_next_line(int fd)
@@ -117,15 +62,18 @@ char	*get_next_line(int fd)
 		free(left_str);
 		return (NULL);
 	}
-	line = (char *)malloc((len + 2) * sizeof(char));
+	line = malloc((len + 2) * sizeof(char));
 	if (!line)
 		return (NULL);
-	i = -1;
-	while (++i < len)
+	i = 0;
+	while (i < len)
+	{
 		line[i] = left_str[i];
-	line[len] = '\n';
-	line[len + 1] = '\0';
-	left_str += len + 1;
+		i++;
+	}
+	line[i] = '\n';
+	line[++i] = '\0';
+	left_str += i;
 	return (line);
 }
 
