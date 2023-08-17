@@ -6,14 +6,13 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:38 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/16 15:41:19 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/16 23:53:59 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
+// #include <stdio.h>
+// #include <fcntl.h>
 
 char	*ft_read_to_left_str(int fd, char *left_str)
 {
@@ -47,37 +46,18 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*left_str;
 	size_t		len;
-	size_t		i;
-	
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	left_str = ft_read_to_left_str(fd, left_str);
 	if (!left_str)
 		return (NULL);
-	len = 0;
-	while (left_str[len] && left_str[len] != '\n')
-		len++;
-	if (left_str[len] == '\0' && len == 0)
-	{
-		free(left_str);
-		return (NULL);
-	}
-	line = malloc((len + 2) * sizeof(char));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		line[i] = left_str[i];
-		i++;
-	}
-	line[i] = '\n';
-	line[++i] = '\0';
-	left_str += i;
+	line = ft_get_line(left_str, &len);
+	left_str += len;
 	return (line);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	char	*line;
 	int		i;
@@ -109,4 +89,4 @@ int	main(void)
 	close(fd3);
 	close(fd4);
 	return (0);
-}
+} */
