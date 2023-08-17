@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.out",
-            "args": ["test.txt"],
+            "args": ["gnlTester/files/nl"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
