@@ -2,6 +2,11 @@
 	📖 get_next_line
 </h1>
 
+<div align = center>
+
+![](https://game.42sp.org.br/static/assets/achievements/get_next_linem.png)
+</div>
+
 <p align="center">
 	<b><i>Reading a line on a fd is way too tedious</i></b><br>
 </p>
@@ -18,9 +23,7 @@
 
 ## 💡 About the project
 
-> _The aim of this project is to make you code a function that returns a line, read from a file descriptor._
-
-	This project will not only allow you to add a very convenient function to your collection, but it will also make you learn a highly interesting new concept in C programming: static variables.
+> _The aim of this project is to make you code a function that returns a line, read from a file descriptor. This project will not only allow you to add a very convenient function to your collection, but it will also make you learn a highly interesting new concept in C programming: static variables._
 
 ## 🛠️ Usage
 
@@ -46,12 +49,11 @@ get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=<size>
 
 ## 📋 Testing
 
-You only have to edit the get_next_line.c file and uncomment the main function and headers inside it.
-You can edit test.txt files to put another text if you wish to test othe cases.
+You only have to edit the .main.c file, test files are inside tests/, you can edit test files to put another text if you wish to test othe cases.
 Then simply run this command (change "xx" with desired buffer size) :
 
 ```shell
-gcc -Wall -Werror -Wextra -D BUFFER_SIZE=xx get_next_line.c get_next_line_utils.c && ./a.out
+gcc -Wall -Werror -Wextra -D BUFFER_SIZE=xx get_next_line.c get_next_line_utils.c .main.c && ./a.out
 ```
 
 Or you can also use this third party tester to fully test the project

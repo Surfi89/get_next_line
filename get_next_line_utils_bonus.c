@@ -3,64 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 13:24:32 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/20 10:06:30 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/08/14 22:23:54 by josfelip          #+#    #+#             */
+/*   Updated: 2023/08/18 14:45:41 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-*	---------
-*	GET_LINE
-*	---------
-*	Extracts the line (ending in either line break and `\0` or only `\0` in EOF)
-*	from static variable.
-*	PARAMETERS
-*	#1. The pointer to the cumulative static variable from previous runs of get_next_line.
-*	RETURN VALUES
-*	The string with the full line ending in a line break (`\n`) + (`\0`).
-*	-------------
-*	NEW_LEFT_STR
-*	-------------
-*	Stores in the cumulative static variable the new updated variable with whatever
-*	is left from the original, minus the line extracted.
-*	PARAMETERS
-*	#1. The pointer to the cumulative static variable from previous runs of get_next_line.
-*	RETURN VALUES
-*	The new updated string with whatever is left from the original static, minus the
-*	line extracted.
-*/
+#include "get_next_line.h"
 
-#include "get_next_line_bonus.h"
-
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0')
+	while (s[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strnl(const char *s)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
 	if (!s)
 		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
+	i = 0;
+	while (s[i++])
+		if (s[i] == '\n')
 			return ((char *)&s[i]);
-		i++;
-	}
 	return (0);
 }
 
@@ -72,22 +45,21 @@ char	*ft_strjoin(char *left_str, char *buff)
 
 	if (!left_str)
 	{
-		left_str = (char *)malloc(1 * sizeof(char));
+		left_str = malloc(1);
+		if (!left_str)
+			return (NULL);
 		left_str[0] = '\0';
 	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
+	str = malloc(ft_strlen(left_str) + ft_strlen(buff) + 1);
+	if (!str)
 		return (NULL);
 	i = -1;
+	while (left_str[++i])
+		str[i] = left_str[i];
 	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
+	while (buff[j])
 		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	str[i] = '\0';
 	free(left_str);
 	return (str);
 }
@@ -134,7 +106,7 @@ char	*ft_new_left_str(char *left_str)
 		free(left_str);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
+	str = malloc(ft_strlen(left_str) - i + 1);
 	if (!str)
 		return (NULL);
 	i++;

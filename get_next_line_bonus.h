@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 13:25:45 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/20 00:19:01 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/08/15 11:09:39 by josfelip          #+#    #+#             */
+/*   Updated: 2023/08/18 14:53:24 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
+# include <unistd.h>
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
@@ -20,11 +21,11 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_read_to_left_str(int fd, char *left_str);
-char	*ft_strchr(char *s, int c);
-size_t	ft_strlen(char *s);
-char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
+char	*ft_read_to_left_str(int fd, char *left_str);
+char	*ft_strnl(const char *s);
+char	*ft_strjoin(char *left_str, char *buff);
+size_t	ft_strlen(const char *s);
 
 #endif
