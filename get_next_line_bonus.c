@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 22:16:13 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/18 14:50:56 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/18 15:30:41 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 {
 	char	*buff;
 	int		rd_bytes;
-	
+
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
