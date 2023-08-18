@@ -32,7 +32,7 @@ char	*ft_read_to_left_str(int fd, char *left_str)
 		buff[rd_bytes] = '\0';
 		left_str = ft_strjoin(left_str, buff);
 	}
-	//free(buff);
+	free(buff);
 	return (left_str);
 }
 
