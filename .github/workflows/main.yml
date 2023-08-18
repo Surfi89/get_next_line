@@ -11,3 +11,17 @@ jobs:
     - uses: alexandregv/norminette-action@v3
       with:
         flags: '.'
+  valgrind_job:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: valgrind
+    steps:
+    - uses: actions/checkout@v2
+    - name: install dependencies
+      run: |
+        sudo apt-get update -qq -y
+        sudo apt-get install -qq gcc make valgrind
+    - name: gcc
+      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c .main.c
+    - name: valgrind
+      run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
