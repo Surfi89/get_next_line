@@ -21,11 +21,16 @@ jobs:
       run: |
         sudo apt-get update -qq -y
         sudo apt-get install -qq gcc make valgrind
-    - name: BUFFER_SIZE=42
-      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=42 -g get_next_line.c get_next_line_utils.c .main.c
+    - name: BUFFER_SIZE=1
+      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=1 -g get_next_line.c get_next_line_utils.c .main.c
     - name: valgrind
       run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
-    - name: BUFFER_SIZE=1000
-      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=1000 -g get_next_line.c get_next_line_utils.c .main.c
+    - name: BUFFER_SIZE=9999
+      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=9999 -g get_next_line_bonus.c get_next_line_utils_bonus.c .main.c
     - name: valgrind
       run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
+    - name: BONUS & BUFFER_SIZE=10000000
+      run: gcc -Wall -Werror -Wextra -D BUFFER_SIZE=10000000 -g get_next_line_bonus.c get_next_line_utils_bonus.c .main.c
+    - name: valgrind
+      run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
+
