@@ -6,11 +6,11 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 22:23:54 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/18 14:45:41 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:57:54 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

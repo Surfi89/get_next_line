@@ -6,7 +6,7 @@
 /*   By: josfelip <josfelip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 22:16:13 by josfelip          #+#    #+#             */
-/*   Updated: 2023/08/18 15:30:41 by josfelip         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:00:28 by josfelip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,6 @@ char	*get_next_line(int fd)
 	left_str[fd] = ft_new_left_str(left_str[fd]);
 	return (line);
 }
+
+// Para testes, veja:
+// https://github.com/jos-felipe/get_next_line
